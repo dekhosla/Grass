@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Grass.ViewModels" x:DataType="viewmodels:ItemDetailViewModel"
              x:Class="Grass.Views.ItemDetailPage"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
@@ -12,7 +12,7 @@
     <StackLayout Spacing="20" Padding="15">
         <!--<Label Text="Course:" FontSize="Medium" />-->
         <Picker ItemsSource="{Binding CourseList}"
-                SelectedItem="{Binding Note.Course}"
+                SelectedItem="{Binding NoteCourse}"
                 x:Name="NoteCourse" 
                 Title="Note course" 
                 FontSize="Medium">
@@ -26,10 +26,10 @@
             
         </Picker>
         <!--<Label Text="Heading:" FontSize="Medium" />-->
-        <Entry Text="{Binding Heading}" x:Name="NoteHeading" Placeholder="Note heading" FontSize="Medium" />
+        <Entry Text="{Binding NoteHeading}" x:Name="NoteHeading" Placeholder="Note heading" FontSize="Medium" />
 
         <!--<Label Text="Text:" FontSize="Medium" />-->
-        <Editor  Text="{Binding Text}" x:Name="NoteText" Placeholder="Note text" AutoSize="TextChanges" FontSize="Medium"/>
+        <Editor  Text="{Binding NoteText}" x:Name="NoteText" Placeholder="Note text" AutoSize="TextChanges" FontSize="Medium"/>
 
     </StackLayout>
 

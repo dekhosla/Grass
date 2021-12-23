@@ -13,41 +13,44 @@ namespace Grass.Views
     public partial class ItemDetailPage : ContentPage
     {
         ItemDetailViewModel viewModel;
-        public Note Note { get; set; }
-        public IList<String> CourseList { get; set; }
+       // public Note Note { get; set; }
+        //public IList<String> CourseList { get; set; }
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
-            InitializeData();
+            //InitializeData();
             //BindingContext = new ItemDetailViewModel();
 
-            BindingContext = Note;
-            NoteCourse.BindingContext = this;
+            this.viewModel = viewModel;
+            BindingContext = this.viewModel;
+            //NoteCourse.BindingContext = this;
         }
 
         public ItemDetailPage()
         {
             InitializeComponent();
-            InitializeData();
+           // InitializeData();
             //BindingContext = new ItemDetailViewModel();
-            BindingContext = Note;
-            NoteCourse.BindingContext = this;
+            viewModel = new ItemDetailViewModel();
+            BindingContext = viewModel;
+            //NoteCourse.BindingContext = this;
         }
 
-        async void InitializeData()
-        {
-            var pluralsightDataStore = new MockPluralsightDataStore();
-            CourseList = await pluralsightDataStore.GetCoursesAsync();
+        //async void InitializeData()
+        //{
+        //    var pluralsightDataStore = new MockPluralsightDataStore();
+        //    CourseList = await pluralsightDataStore.GetCoursesAsync();
 
-            Note =new Note { Heading = "Test Note", Text = "Text for a test note",
-            Course=CourseList[0]};
-        }
+        //    //Note = new Note { Heading = "Test Note", Text = "Text for a test note", 
+        //    //Course=CourseList[0]};
+        //}
 
         public void Cancel_Clicked(object sender, EventArgs eventArgs)
         {
-            DisplayAlert("Cancel option", "Cancel was selected", "Button 2", "Button 1");
-
+            viewModel.NoteHeading = "gfgg";
+            DisplayAlert("Cancel option", "Heading value is " + viewModel.NoteHeading, "Button 2", "Button 1");
+             
         }
         public void Save_Clicked(object sender, EventArgs eventArgs)
         {
