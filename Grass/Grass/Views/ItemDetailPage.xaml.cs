@@ -1,16 +1,46 @@
-﻿using Grass.ViewModels;
+﻿
+using Xamarin.Forms.Xaml;
+using Grass.Models;
+using Grass.ViewModels;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using Grass.Services;
 
 namespace Grass.Views
 {
     public partial class ItemDetailPage : ContentPage
     {
+        ItemDetailViewModel viewModel;
+        public Note Note { get; set; }
+        public IList<String> CourseList { get; set; }
+
+        public ItemDetailPage(ItemDetailViewModel viewModel)
+        {
+            InitializeComponent();
+            InitializeData();
+            //BindingContext = new ItemDetailViewModel();
+
+            BindingContext = Note;
+            NoteCourse.BindingContext = this;
+        }
+
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            InitializeData();
+            //BindingContext = new ItemDetailViewModel();
+            BindingContext = Note;
+        }
+
+        async void InitializeData()
+        {
+            var pluralsightDataStore = new MockPluralsightDataStore();
+            CourseList = await pluralsightDataStore.GetCoursesAsync();
+
+            Note =new Note { Heading = "Test Note", Text = "Text for a test note",
+            Course=CourseList[0]};
         }
 
         public void Cancel_Clicked(object sender, EventArgs eventArgs)
