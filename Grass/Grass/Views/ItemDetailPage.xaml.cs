@@ -32,6 +32,7 @@ namespace Grass.Views
             InitializeData();
             //BindingContext = new ItemDetailViewModel();
             BindingContext = Note;
+            NoteCourse.BindingContext = this;
         }
 
         async void InitializeData()

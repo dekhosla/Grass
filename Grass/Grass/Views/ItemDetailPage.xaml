@@ -11,9 +11,11 @@
 
     <StackLayout Spacing="20" Padding="15">
         <!--<Label Text="Course:" FontSize="Medium" />-->
-        <Picker ItemsSource="{Binding CourseList}" 
+        <Picker ItemsSource="{Binding CourseList}"
                 SelectedItem="{Binding Note.Course}"
-                x:Name="NoteCourse" Title="Note course" FontSize="Medium">
+                x:Name="NoteCourse" 
+                Title="Note course" 
+                FontSize="Medium">
             <!--<Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}" >
                     <x:String>Course 1</x:String>
