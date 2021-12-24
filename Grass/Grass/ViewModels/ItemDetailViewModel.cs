@@ -13,6 +13,8 @@ namespace Grass.ViewModels
     {
        public Note Note { get; set; }
         public IList<String> CourseList { get; set; }
+
+        public bool IsNewNote { get; set; }
         public String NoteHeading
         {
             get { return Note.Heading; }
@@ -43,17 +45,19 @@ namespace Grass.ViewModels
         }
 
 
-        public ItemDetailViewModel(Item item = null)
+        public ItemDetailViewModel(Note item = null)
         {
-            Title = item?.Text;
+            //Title = item?.Text;
             InitializeCourseList();
-            Note = new Note
-            {
-                Heading = "Test Note",
-                Text = "Text for a test note",
-                Course = CourseList[0]
-            };        
+            Note = item ?? new Note();
+            //Note = new Note
+            //{
+            //    Heading = "Test Note",
+            //    Text = "Text for a test note",
+            //    Course = CourseList[0]
+            //};        
         }
+               
         async void InitializeCourseList()
         {         
             CourseList = await PluralsightDataStore.GetCoursesAsync();
