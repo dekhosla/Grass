@@ -48,13 +48,23 @@ namespace Grass.Views
 
         public void Cancel_Clicked(object sender, EventArgs eventArgs)
         {
-            viewModel.NoteHeading = "gfgg";
-            DisplayAlert("Cancel option", "Heading value is " + viewModel.NoteHeading, "Button 2", "Button 1");
+            //viewModel.NoteHeading = "gfgg";
+            //DisplayAlert("Cancel option", "Heading value is " + viewModel.NoteHeading, "Button 2", "Button 1");
+            
+            Navigation.PopModalAsync();
              
         }
         public void Save_Clicked(object sender, EventArgs eventArgs)
         {
-            DisplayAlert("Save option", "Save was Clicked", "Button 2", "Button 1");
+            //DisplayAlert("Save option", "Save was Clicked", "Button 2", "Button 1");
+            // Determine appropriate message
+            var message = viewModel.IsNewNote ? "SaveNote" : "UpdateNote";
+
+            // Send appropriate message, include the affected note
+            MessagingCenter.Send(this, message, viewModel.Note);
+
+            //MessagingCenter.Send(this, "SaveNote", viewModel.Note);
+            Navigation.PopModalAsync();
 
         }
     }

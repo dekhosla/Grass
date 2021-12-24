@@ -47,7 +47,9 @@ namespace Grass.ViewModels
 
         public ItemDetailViewModel(Note item = null)
         {
-            //Title = item?.Text;
+           // Title = item?.Text;
+            IsNewNote = item == null;
+            Title = IsNewNote ? "Add note" : "Edit note";
             InitializeCourseList();
             Note = item ?? new Note();
             //Note = new Note
